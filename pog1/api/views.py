@@ -155,6 +155,7 @@ def orderRemoveView(request, pk):
     if request.method == 'DELETE':
         order = Order.objects.get(user=request.user)
         order.products.remove(cart)
+        cart.delete()
         return Response({"body": {"message": "Product remove to card"}}, status=200)
 
 
