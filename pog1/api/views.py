@@ -16,7 +16,7 @@ def SingupViewDef(request):
     serializer = UserRegisterSerializer(data=request.data)
     if serializer.is_valid():
         user = serializer.save()
-        return Response({'data': {'user_token': Token.objects.created(user=user).key}}, status=HTTP_201_CREATED)
+        return Response({'data': {'user_token': Token.objects.create(user=user).key}}, status=HTTP_201_CREATED)
     return Response({'error': {'code': 402, 'message': 'Validation error', 'error': serializer.errors}},
                     status=HTTP_422_UNPROCESSABLE_ENTITY)
 
